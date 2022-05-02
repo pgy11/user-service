@@ -51,6 +51,7 @@ public class UserService implements UserDetailsService {
         return userDto;
     }
 
+
     public Iterable<UserEntity> getAllUsers() {
         return userRepository.findAll();
     }
@@ -63,4 +64,11 @@ public class UserService implements UserDetailsService {
                 true, true, true, true, new ArrayList<>());
     }
 
+    public UserDto getUserDetailsByEmail(String email) {
+        UserEntity userEntity = userRepository.findByEmail(email);
+        if(userEntity == null) throw new UsernameNotFoundException(email);
+
+        UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+        return userDto;
+    }
 }
