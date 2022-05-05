@@ -29,3 +29,12 @@ eureka:
 token:
   expiration_time: 86400000
   secret: user_token
+
+greeting:
+  message: hello
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: refresh, health, bean

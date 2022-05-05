@@ -34,13 +34,11 @@ public class UsersController {
 
     @GetMapping("/health_check")
     public String status() {
-        return String.format("it's working in user service on port %s", env.getProperty("local.server.port"));
-    }
-
-    @GetMapping("/welcome")
-    public String welcome() {
-        //return env.getProperty("greeting.message");
-        return greeting.getMessage();
+        String localServerPortInfo = "it's working in user service" + " , port(local.server.port)" + env.getProperty("local.server.port");
+        String serverPortInfo = " , port(server.port)=" + env.getProperty("server.port");
+        String tokenSecret = ", token secret=" + env.getProperty("token.secret");
+        String expirationTime = ", token expiration time=" + env.getProperty("token.expiration_time");
+        return localServerPortInfo + serverPortInfo + tokenSecret + expirationTime;
     }
 
     @PostMapping("/users")
